@@ -1,0 +1,31 @@
+citHeader("To cite package '",meta$Package,"' in publications cite the package and the article.", sep="")
+     
+# Grab the version and date from the DESCRIPTION file
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+aut<-eval(parse(text=meta$"Authors@R"))
+autText<-format(aut, include = c("family", "given"),
+   braces = list(family = c("", ",")))
+
+citEntry(entry = "Article",
+	title = "Stochastic blockmodeling of linked networks",
+	volume = "70",
+	shorttitle = "Stochastic blockmodeling of linked networks",
+	doi = "10.1016/j.socnet.2022.02.001",
+	journal = "Social Networks",
+	author = personList(as.person("Damjan Škulj"),
+                                   as.person("Aleš Žiberna")),
+	year = "2022",
+	pages = "240--252",
+	textVersion= "Škulj, Damjan, Žiberna, Aleš (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240–252. doi: 10.1016/j.socnet.2022.02.001."
+)
+
+citEntry(entry="Manual",
+	title = meta$Title,
+	author= aut,
+	year =year,
+	note =vers,
+	textVersion= paste(paste(autText, collapse=", " )," (", year, 
+	").  ",meta$Title,", ",
+	vers, ".", sep="")
+)

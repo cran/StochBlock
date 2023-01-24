@@ -1,0 +1,86 @@
+2022
+Version: 0.0.2.9047
+Date: 2022-08-18
+Added/improved examples
+
+Version: 0.0.2.9046
+Date: 2022-08-02
+Some R check ERROR fixed.
+
+Version: 0.0.2.9045
+Date: 2022-07-28
+Some changes undone.
+Function ICL renamed to .ICL.
+
+Version: 0.0.2.9044
+Date: 2022-07-28
+1. Added examples to the help pages of the functions:
+1a. StockBlockORP
+1b. StockBlock
+1c. llStockBlock
+2. Removed all mentions of OptParC
+3. Inserted detailed descriptions of the functions outputs:
+3a. StockBlockORP
+3b. StockBlock
+4. Inserted description of outputs of the llStockBlock
+5. Corrected several typos
+
+Version: 0.0.2.9043
+Date: 2022-07-21
+Some NOTEs in R check fixed.
+
+Version: 0.0.2.9042
+Date: 2022-07-21
+Added a fix so ICL works with blockmodeling version < 1.0.9.
+
+Version: 0.0.2.9041
+Date: 2022-07-21
+Added check that the data are binary.
+
+Version: 0.0.2.9040
+Date: 2022-07-19
+Some fixes based on winbuider R  check.
+
+Version: 0.0.2.9030
+Date: 2022-07-19
+Some documentation updates.
+
+Version: 0.0.2.9020
+Date: 2022-07-19
+Mainly bug fixes due to migration.
+
+Version: 0.0.2.9010
+Date: 2022-07-07
+Documentation plus migration to roxygen2.
+
+Version: 0.0.2.9010
+Date: 2022-04-21
+New option on how to restrict probabilities from being exactly 0 or 1, which does not include the shrinkage towards the superblock density. The old option is left as default.
+
+Version: 0.0.2.9000
+Date: 2022-04-01
+Calculation of ICL criterion added to all functions.
+A function stochBlockKMint added that performs stochastic blockmodeling initialized by classical k-means  on M+t(M). Multirotational and linked networks are supported. 
+
+2021
+Version: 0.0.1.9020
+Date: 2021-05-18
+Minor bug related to calling functions from package blockmodeling fixed.
+Functions created by Rcpp renamed to start with dot (.) and therefore not too be exported.
+
+Version: 0.0.1.9010
+Date: 2021-05-14
+Added helper function for computing weights for linekd networks (called weightsMlLoglik). Name will be changed in the future.
+
+Version: 0.0.1.9000
+Date: 2021-05-13
+Added support for unit level weights.
+
+Version: 0.0.1
+Date: 2021-05-08
+Major bug fixed. The code is probably free of major bugs.
+
+Version: 0.0.0.9101
+Date: 2021-03-18
+StochBlock now returns clu as a list in case of multiple sets of units.
+All printing is commented in the cpp source code.
