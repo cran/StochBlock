@@ -56,7 +56,7 @@ A list of class \code{opt.par} normally passed other commands with \code{StockBl
 \item{IM}{Image matrix of this partition;}
 \item{weights}{The weights for each cell in the matrix/array. A matrix or an array with the same dimensions as \code{M}.}
 \item{uWeights}{The weights for each unit. A vector with the length equal to the number of units (in all sets).}
-\item{err}{The error as the sum of the inconsistencies between this network and the ideal partitions.}
+\item{err}{- weighted log-likelihood.}
 \item{ICL}{Integrated Criterion Likelihood for this partition}
 }
 \description{
@@ -103,7 +103,7 @@ plot(res) # Have a look at the optimised parition
 
 }
 \references{
-Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252.
+Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
 }
 \seealso{
 \code{\link{stochBlockORP}}

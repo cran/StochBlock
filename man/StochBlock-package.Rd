@@ -6,7 +6,60 @@
 \alias{StochBlock-package}
 \title{StochBlock: Stochastic Blockmodeling of One-Mode and Linked Networks}
 \description{
-Stochastic blockmodeling of one-mode and linked networks as implemented in Škulj and Žiberna (2022) \doi{10.1016/j.socnet.2022.02.001}. The optimization is done via CEM (Classification Expectation Maximization) algorithm that can be initialized by random partitions or the results of k-means algorithm. The development of this package is financially supported by the Slovenian Research Agency (\url{https://www.arrs.si/}) within the research programs P5-0168 and the research projects J7-8279 (Blockmodeling multilevel and temporal networks) and J5-2557 (Comparison and evaluation of different approaches to blockmodeling dynamic networks by simulations with application to Slovenian co-authorship networks).
+Stochastic blockmodeling of one-mode and linked networks as presented in Škulj and Žiberna (2022) \doi{10.1016/j.socnet.2022.02.001}. The optimization is done via CEM (Classification Expectation Maximization) algorithm that can be initialized by random partitions or the results of k-means algorithm. The development of this package is financially supported by the Slovenian Research Agency (\url{https://www.arrs.si/}) within the research programs P5-0168 and the research projects J7-8279 (Blockmodeling multilevel and temporal networks) and J5-2557 (Comparison and evaluation of different approaches to blockmodeling dynamic networks by simulations with application to Slovenian co-authorship networks).
+}
+\examples{
+# Simple one-mode network
+library(blockmodeling)
+k<-2
+blockSizes<-rep(20,k)
+IM<-matrix(c(0.8,.4,0.2,0.8), nrow=2)
+if(any(dim(IM)!=c(k,k))) stop("invalid dimensions")
+
+set.seed(2021)
+clu<-rep(1:k, times=blockSizes)
+n<-length(clu)
+M<-matrix(rbinom(n*n,1,IM[clu,clu]),ncol=n, nrow=n)
+diag(M)<-0
+plotMat(M)
+
+resORP<-stochBlockORP(M,k=2, rep=10, return.all = TRUE)
+resORP$ICL
+plot(resORP)
+clu(resORP)
+
+
+# Linked network
+library(blockmodeling)
+set.seed(2021)
+IM<-matrix(c(0.8,.4,0.2,0.8), nrow=2)
+clu<-rep(1:2, each=20)
+n<-length(clu)
+nClu<-length(unique(clu))
+M1<-matrix(rbinom(n^2,1,IM[clu,clu]),ncol=n, nrow=n)
+M2<-matrix(rbinom(n^2,1,IM[clu,clu]),ncol=n, nrow=n)
+M12<-diag(n)
+nn<-c(n,n)
+k<-c(2,2)
+Ml<-matrix(0, nrow=sum(nn),ncol=sum(nn))
+Ml[1:n,1:n]<-M1
+Ml[n+1:n,n+1:n]<-M2
+Ml[n+1:n, 1:n]<-M12
+plotMat(Ml)
+
+resMl<-stochBlockORP(M=Ml, k=k, n=nn, rep=10)
+resMl$ICL
+plot(resMl)
+clu(resMl)
+
+}
+\references{
+Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
+}
+\seealso{
+\code{\link{stochBlockORP}}
+
+\code{\link{stochBlock}}
 }
 \author{
 \strong{Maintainer}: Aleš Žiberna \email{ales.ziberna@fdv.uni-lj.si} (\href{https://orcid.org/0000-0003-1534-6971}{ORCID})

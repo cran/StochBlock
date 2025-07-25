@@ -1,3 +1,23 @@
+2025
+Version: 0.1.5
+Date: 2025-07-23
+Added up and down (or split and merge) optimization function).
+
+Version: 0.1.4
+Date: 2025-07-23
+Updated link to R help to a function in another package.  Also addressed some other notes in R check.
+
+2023
+Version: 0.1.3
+Date: 2023-08-23
+Documentation improvements (mainly package help file).
+
+Version: 0.1.2
+Date: 2023-01-23
+CRAN submission comments cleared - no .Random.seed calls, corrected DESCRIPTION.
+Updated based on comments for CRAN checker (person).
+Other minor fixes.
+
 2022
 Version: 0.0.2.9047
 Date: 2022-08-18

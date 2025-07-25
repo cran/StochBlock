@@ -77,3 +77,9 @@ ll_post<-llStochBlock(M,clu(res)) # Calculate its loglikelihood
   
 
 }
+\references{
+Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
+}
+\author{
+\enc{Aleš, Žiberna}{Ales Ziberna}
+}

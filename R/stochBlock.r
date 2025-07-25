@@ -42,10 +42,10 @@ unlistPar<-function(part){
 #'\item{IM}{Image matrix of this partition;}
 #'\item{weights}{The weights for each cell in the matrix/array. A matrix or an array with the same dimensions as \code{M}.}
 #'\item{uWeights}{The weights for each unit. A vector with the length equal to the number of units (in all sets).}
-#'\item{err}{The error as the sum of the inconsistencies between this network and the ideal partitions.}
+#'\item{err}{- weighted log-likelihood.}
 #'\item{ICL}{Integrated Criterion Likelihood for this partition}
 #'
-#' @references Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252.
+#' @references Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
 #' 
 #' @author \enc{Aleš, Žiberna}{Ales Ziberna}
 #' 
@@ -255,6 +255,10 @@ stochBlock<-function(M,
 #'
 #' @return - the value of the log-likelihood criterion for the partition \code{clu} on the network represented by \code{M} for binary stochastic blockmodel.
 #' 
+#' @references Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
+#' 
+#' @author \enc{Aleš, Žiberna}{Ales Ziberna}
+#' 
 #' @examples 
 #' # Create a synthetic network matrix
 #' set.seed(2022)
@@ -395,7 +399,7 @@ llStochBlock<-function(M,
   # return(res)
 }
 
-#' A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Similar to optRandomParC, but calling stochBlock for optimizing individual partitions.
+#' A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Calls stochBlock for optimizing individual partitions.
 #'
 #' @import parallel
 #' @import foreach
@@ -415,10 +419,10 @@ llStochBlock<-function(M,
 #' @param return.all If \code{FALSE}, solution for only the best (one or more) partition/s is/are returned.
 #' @param return.err Should the error for each optimized partition be returned. Defaults to \code{TRUE}.
 #' @param seed Optional. The seed for random generation of partitions.
-#' @param parGenFun The function (object) that will generate random partitions. The default function is   \code{\link{genRandomPar}}. The function has to accept the following parameters: \code{k} (number o of partitions by modes, \code{n} (number of units by modes), \code{seed} (seed value for random generation of partition), \code{addParam} (a list of additional parameters).
+#' @param parGenFun The function (object) that will generate random partitions. The default function is \code{\link[blockmodeling]{genRandomPar}}. The function has to accept the following parameters: \code{k} (number o of partitions by modes, \code{n} (number of units by modes), \code{seed} (seed value for random generation of partition), \code{addParam} (a list of additional parameters).
 #' @param mingr Minimal allowed group size.
 #' @param maxgr Maximal allowed group size.
-#' @param addParam A list of additional parameters for function specified above. In the usage section they are specified for the default function \code{\link{genRandomPar}}.
+#' @param addParam A list of additional parameters for function specified above. In the usage section they are specified for the default function \code{\link[blockmodeling]{genRandomPar}}.
 #' @param maxTriesToFindNewPar The maximum number of partition try when trying to find a new partition to optimize that was not yet checked before - the default value is \code{rep * 1000}.
 #' @param skip.par The partitions that are not allowed or were already checked and should therefore be skipped.
 #' @param printRep Should some information about each optimization be printed.
@@ -445,10 +449,12 @@ llStochBlock<-function(M,
 #' It should be noted that the time needed to optimise the partition depends on the number of units (aka nodes) in the networks as well as the number of clusters
 #' due to the underlying algorithm. Hence, partitioning networks with 100 units and large number of blocks (e.g., >5) can take a long time (from 20 minutes to a few hours or even days).
 #' 
-#' @references Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252.
+#' @references Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
 #' 
 #' @author \enc{Aleš, Žiberna}{Ales Ziberna}
-#'
+#' 
+#' @seealso \code{\link{stochBlock}}
+#' 
 #' @examples
 #'# Simple one-mode network
 #'library(blockmodeling)
@@ -493,10 +499,7 @@ llStochBlock<-function(M,
 #'plot(resMl)
 #'clu(resMl)
 #'
-#' @author \enc{Aleš, Žiberna}{Ales Ziberna}
-#' 
 #' @export
-
 stochBlockORP<-function(M, #a square matrix
                          k,#number of clusters/groups
                          rep,#number of repetitions/different starting partitions to check

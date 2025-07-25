@@ -2,7 +2,7 @@
 % Please edit documentation in R/stochBlock.r
 \name{stochBlockORP}
 \alias{stochBlockORP}
-\title{A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Similar to optRandomParC, but calling stochBlock for optimizing individual partitions.}
+\title{A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Calls stochBlock for optimizing individual partitions.}
 \usage{
 stochBlockORP(
   M,
@@ -48,13 +48,13 @@ stochBlockORP(
 
 \item{seed}{Optional. The seed for random generation of partitions.}
 
-\item{parGenFun}{The function (object) that will generate random partitions. The default function is   \code{\link{genRandomPar}}. The function has to accept the following parameters: \code{k} (number o of partitions by modes, \code{n} (number of units by modes), \code{seed} (seed value for random generation of partition), \code{addParam} (a list of additional parameters).}
+\item{parGenFun}{The function (object) that will generate random partitions. The default function is \code{\link[blockmodeling]{genRandomPar}}. The function has to accept the following parameters: \code{k} (number o of partitions by modes, \code{n} (number of units by modes), \code{seed} (seed value for random generation of partition), \code{addParam} (a list of additional parameters).}
 
 \item{mingr}{Minimal allowed group size.}
 
 \item{maxgr}{Maximal allowed group size.}
 
-\item{addParam}{A list of additional parameters for function specified above. In the usage section they are specified for the default function \code{\link{genRandomPar}}.}
+\item{addParam}{A list of additional parameters for function specified above. In the usage section they are specified for the default function \code{\link[blockmodeling]{genRandomPar}}.}
 
 \item{maxTriesToFindNewPar}{The maximum number of partition try when trying to find a new partition to optimize that was not yet checked before - the default value is \code{rep * 1000}.}
 
@@ -88,7 +88,7 @@ A list of class "opt.more.par" containing:
   \item{cl}{Cluster used for parallel computations if supplied as an input parameter.}
 }
 \description{
-A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Similar to optRandomParC, but calling stochBlock for optimizing individual partitions.
+A function for optimizing multiple random partitions using stochastic one-mode and linked blockmodeling. Calls stochBlock for optimizing individual partitions.
 }
 \section{Warning}{
 
@@ -142,7 +142,10 @@ clu(resMl)
 
 }
 \references{
-Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252.
+Škulj, D., & Žiberna, A. (2022). Stochastic blockmodeling of linked networks. Social Networks, 70, 240-252, \doi{10.1371/journal.pcbi.1005697}.
+}
+\seealso{
+\code{\link{stochBlock}}
 }
 \author{
 \enc{Aleš, Žiberna}{Ales Ziberna}
